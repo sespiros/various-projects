@@ -1,0 +1,7 @@
+.kdev4
+build
+help
+CMakeLists.txt
+*.kdev4
+.directory
+week5

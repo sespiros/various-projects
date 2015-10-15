@@ -1,0 +1,21 @@
+<html>
+<head>Test</head>
+<body>
+	<script type="text/javascript">
+	var count = 1;
+	var j,k=0;
+	for (var i = 0; i<256; i++)
+	{
+		j = i/255;
+		j = Math.pow(j,1/2.2);
+		j = Math.round(j*255);
+		if (j!=k)
+			count++;
+		k=j;
+	}
+	console.log("Differend levels output: " + count);
+	</script>
+</body>
+
+
+</html>

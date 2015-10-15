@@ -1,0 +1,102 @@
+/*
+ID: sespiros
+PROG: calfflac
+LANG: C
+*/
+
+#include	<stdio.h>
+#include	<string.h>
+#include	<stdlib.h>
+#include	<ctype.h>
+
+int glo=0;
+  int
+compare (char s[],int start,int end)
+
+  int max=end-start+1,i=start,j=0,check=0;
+  //char temp[max];
+
+  //for(i=0;i<max;i++){
+  //  temp[i]='\0';
+  //}
+
+  //for(i=start;i<=end;i++){
+  //  if(isalpha(s[i])){
+  //    temp[j++]=tolower(s[i]);
+  //  }else{
+  //    max--;
+  //  }
+  //}
+
+  for(i=start;i<(end+1)/2;i++){
+    if(s[i]==s[end-i]){
+      check+=2;
+    }else{
+      check=0;
+      break;
+    }
+  }
+
+  if(check){
+    return max;
+  }else{
+    return 0;
+  }
+}		/* -----  end of function compare  ----- */
+
+
+  int
+main ( int argc, char *argv[] )
+{
+  int i=0,j=0,k,m,fl,flac[1000],poin[1000][2],poi=0,flag=0,maxn=0,p[20000];
+  char s[20000],temp[20000];
+
+  freopen("calfflac.in","r",stdin);
+  freopen("calfflac.out","w",stdout);
+
+	printf("asdf");
+  //fread(s,sizeof(char),20000,stdin);
+  while (scanf("%c",&s[i])!=EOF)
+    {
+      if (isalpha(s[i]))
+      {
+        temp[glo]=s[i];
+        p[glo]=i;
+        glo++;
+      }
+      i++;
+    }
+
+  for(i=0;i<strlen(temp)-maxn;i++){
+    //if(isalpha(s[i])){
+      flag=0;
+      for(j=strlen(temp);j>i+maxn && flag==0 ;j--){
+        if(/*isalpha(s[j]) && */tolower(temp[i])==tolower(temp[j])){
+
+          fl=compare(temp,i,j);
+          if(fl){
+           flac[poi]=fl;
+           poin[poi][0]=i;
+           poin[poi][1]=j;
+           if(poin[poi][1]-poin[poi][0]>maxn)maxn=poin[poi][1]-poin[poi][0];
+           poi++;
+           flag=1;
+          }
+        }
+      }
+    }
+ // }
+  m=-1;
+  for(i=0;i<poi;i++){
+    if(flac[i]>m){
+      m=flac[i];
+      fl=i;
+    }
+  }
+  printf("%d\n",flac[fl]);
+  for(k=p[poin[fl][0]];k<p[poin[fl][1]+1];k++){
+    printf("%c",temp[k]);
+  }
+  printf("\n");
+  return 0;
+}				/* ----------  end of function main  ---------- */
